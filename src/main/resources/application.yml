@@ -6,3 +6,6 @@
     driverClassName: com.mysql.jdbc.Driver
   jackson:
     property-naming-strategy: SNAKE_CASE
+logging:
+  level:
+    root: INFO
