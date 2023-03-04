@@ -2,10 +2,13 @@ package com.book.manager.infrastructure.database.repository
 
 import com.book.manager.domain.model.Rental
 import com.book.manager.domain.repository.RentalRepository
+import com.book.manager.infrastructure.database.mapper.RentalDynamicSqlSupport.Rental.userId
 import com.book.manager.infrastructure.database.mapper.RentalMapper
+import com.book.manager.infrastructure.database.mapper.deleteByPrimaryKey
 import com.book.manager.infrastructure.database.mapper.insert
 import com.book.manager.infrastructure.database.record.RentalRecord
 import org.springframework.stereotype.Repository
+import org.springframework.transaction.annotation.Transactional
 
 @Suppress("SpringJavaInjectionPointAutowiringInspection")
 @Repository
@@ -20,4 +23,7 @@ class RentalRepositoryImpl (
         return RentalRecord(model.bookId, model.userId, model.rentalDatetime, model.returnDeadline)
     }
 
+    override fun endRental(bookId: Long) {
+        rentalMapper.deleteByPrimaryKey(bookId)
+    }
 }
